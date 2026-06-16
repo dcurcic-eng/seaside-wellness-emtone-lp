@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EMTONE® Cellulite Treatment | Seaside Wellness, Largo FL</title>
+<meta name="description" content="A calm, spa-like EMTONE cellulite treatment in Largo, FL. About 20 minutes, no downtime. 93% of patients report visible reduction after four treatments. Book a free consultation." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Tokens ---------- */
+  :root {
+    --teal: #10AE9C;
+    --teal-dark: #0C8B7C;
+    --teal-2: #3C99AD;
+    --soft-teal: #7FB6BE;
+    --muted: #659198;
+    --aqua: #6FCCE0;
+    --cloud: #ECF0F1;
+    --ink: #070707;
+    --ink-2: #1A1A1A;
+    --ink-soft: #383838;
+    --mid-gray: #808080;
+    --line: #E6E6E6;
+    --bg: #F9FAFA;
+    --white: #FFFFFF;
+    --shadow-sm: 0 4px 20px -8px rgba(7,7,7,0.08);
+    --shadow-md: 0 20px 40px -15px rgba(7,7,7,0.12);
+    --shadow-lg: 0 30px 60px -20px rgba(7,7,7,0.18);
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: 'Poppins', system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  /* full-bleed page (no side margins) */
+  .page { width: 100%; background: var(--white); }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 26px;
+    font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 700;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    border: none; cursor: pointer; border-radius: 999px;
+    transition: transform .4s var(--ease), box-shadow .4s var(--ease), background-color .3s var(--ease), color .3s var(--ease);
+    position: relative; overflow: hidden; white-space: nowrap;
+  }
+  .btn::before {
+    content: ''; position: absolute;
+    top: var(--my, 50%); left: var(--mx, 50%);
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(255,255,255,0.2), transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%; pointer-events: none;
+    transition: transform .6s var(--ease);
+  }
+  .btn:hover::before { transform: translate(-50%, -50%) scale(1.5); }
+  .btn:active { transform: translateY(1px) scale(0.98); }
+  .btn:disabled { opacity: .4; cursor: not-allowed; }
+  .btn:disabled:hover { transform: none; box-shadow: 0 8px 24px -8px rgba(16,174,156,0.45); background: var(--teal); }
+  .btn:disabled::before, .btn:disabled:hover::before { transform: translate(-50%, -50%) scale(0); }
+  .btn-primary { background: var(--teal); color: var(--white); box-shadow: 0 8px 24px -8px rgba(16,174,156,0.45); }
+  .btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 14px 32px -10px rgba(12,139,124,0.55); }
+  .btn-light { background: var(--white); color: var(--teal); }
+  .btn-light:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .btn-light::before { background: radial-gradient(circle, rgba(16,174,156,0.14), transparent 70%); }
+  .btn-outline-light { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.9); }
+  .btn-outline-light:hover { background: rgba(255,255,255,0.14); transform: translateY(-2px); }
+  .icon { width: 1em; height: 1em; display: inline-block; vertical-align: middle; }
+
+  /* ---------- Top Bar (from exomind) ---------- */
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    transition: all 0.4s var(--ease);
+    padding: 12px 40px;
+  }
+  .topbar.is-scrolled {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(140%) blur(18px);
+    -webkit-backdrop-filter: saturate(140%) blur(18px);
+    border-bottom: 1px solid rgba(7,7,7,0.06);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+    padding: 8px 40px;
+  }
+  .topbar-inner {
+    max-width: 1360px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; transition: transform 0.4s var(--ease); }
+  .brand:hover { transform: translateY(-1px); }
+  .brand-logo {
+    height: 45px; width: auto; object-fit: contain;
+    filter: brightness(0) invert(1);
+    transition: filter 0.4s var(--ease), height 0.4s var(--ease);
+  }
+  .topbar.is-scrolled .brand-logo { height: 36px; filter: brightness(0) saturate(100%) invert(58%) sepia(58%) saturate(486%) hue-rotate(127deg) brightness(91%) contrast(88%); }
+  .nav { display: flex; align-items: center; gap: 4px; }
+  .nav a {
+    padding: 10px 16px; font-size: 13px; font-weight: 600; color: var(--white);
+    border-radius: 999px; transition: all 0.3s var(--ease); position: relative;
+  }
+  .topbar.is-scrolled .nav a { color: var(--teal-dark); }
+  .nav a:hover { background: rgba(16,174,156,0.12); color: var(--teal-dark); }
+  .topbar:not(.is-scrolled) .nav a:hover { background: rgba(255,255,255,0.2); color: var(--white); }
+  .topbar-cta { display: flex; align-items: center; gap: 14px; }
+  .topbar-cta .btn-primary { background: var(--white); color: var(--teal-dark); box-shadow: 0 10px 28px -12px rgba(7,7,7,0.4); }
+  .topbar-cta .btn-primary:hover { background: var(--white); color: var(--teal-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .topbar-cta .btn-primary::before { background: radial-gradient(circle, rgba(16,174,156,0.18), transparent 70%); }
+  .topbar.is-scrolled .topbar-cta .btn-primary { background: var(--teal); color: var(--white); box-shadow: 0 8px 24px -8px rgba(16,174,156,0.45); }
+  .topbar.is-scrolled .topbar-cta .btn-primary:hover { background: var(--teal-dark); color: var(--white); transform: translateY(-2px); box-shadow: 0 14px 32px -10px rgba(12,139,124,0.55); }
+  .topbar.is-scrolled .topbar-cta .btn-primary::before { background: radial-gradient(circle, rgba(255,255,255,0.2), transparent 70%); }
+
+  /* ---------- Hero (Desktop 2: teal overlay, left-aligned) ---------- */
+  .hero {
+    position: relative; isolation: isolate; overflow: hidden;
+    min-height: 100vh; min-height: 100dvh;
+    display: flex; align-items: center;
+    padding: 120px 0 80px;
+    background: var(--ink);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('./images/EMTONE_PIC_Unit-patient-2_ENUS100.jpg');
+    background-size: cover; background-position: center;
+    transform: scale(1.05);
+    transition: transform 6s var(--ease);
+    z-index: 0;
+  }
+  .hero.is-loaded .hero-bg { transform: scale(1); }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,139,124,0.95) 0%, rgba(12,139,124,0.6) 50%, rgba(12,139,124,0) 100%); z-index: 1; }
+  .hero-content {
+    position: relative; z-index: 2;
+    width: 100%; max-width: 1360px; margin: 0 auto; padding: 0 40px;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 28px;
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 1s var(--ease) .3s, transform 1s var(--ease) .3s;
+  }
+  .hero.is-loaded .hero-content { opacity: 1; transform: translateY(0); }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Marcellus', serif; font-size: 16px; letter-spacing: 3px; color: rgba(255,255,255,0.85);
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--white);
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.25);
+    animation: livePulse 2.4s ease-in-out infinite;
+  }
+  @keyframes livePulse {
+    0%,100% { box-shadow: 0 0 0 4px rgba(255,255,255,0.22); }
+    50% { box-shadow: 0 0 0 7px rgba(255,255,255,0.05); }
+  }
+  .hero-title { font-family: 'Marcellus', serif; font-size: clamp(38px, 5vw, 66px); line-height: 1.05; color: var(--white); max-width: 820px; }
+  .hero-sub { font-size: 18px; line-height: 1.5; color: rgba(255,255,255,0.92); max-width: 560px; }
+  .hero-cta { padding: 16px 34px; }
+  .hero-actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .trust-line { display: inline-flex; align-items: center; gap: 10px; }
+  .stars { display: inline-flex; gap: 3px; color: #F5B945; }
+  .stars svg { width: 16px; height: 16px; }
+  .trust-text { font-size: 14px; color: var(--mid-gray); }
+  .hero .stars { color: var(--white); }
+  .hero .trust-text { color: rgba(255,255,255,0.9); }
+
+  /* ---------- Stat Bar ---------- */
+  .statbar { background: var(--teal-dark); display: flex; align-items: center; justify-content: space-between; padding: 36px 96px; gap: 24px; }
+  .stat { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+  .stat-val { font-family: 'Marcellus', serif; font-size: 46px; color: var(--white); line-height: 1; }
+  .stat-lbl { font-size: 13px; color: rgba(255,255,255,0.8); }
+  .stat-div { width: 1px; height: 56px; background: rgba(255,255,255,0.2); }
+
+  /* ---------- Generic ---------- */
+  .eyebrow { font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--teal-dark); font-weight: 500; }
+  .sec-title { font-family: 'Marcellus', serif; font-size: 40px; line-height: 1.12; color: var(--ink); }
+
+  /* ---------- Lead Form / Quiz ---------- */
+  .leadform { background: var(--bg); padding: 64px 48px; display: flex; justify-content: center; }
+  .form-card {
+    width: 920px; max-width: 100%; background: var(--white);
+    border: 1px solid var(--line); box-shadow: 0 8px 30px -8px rgba(7,7,7,0.05);
+    padding: 40px; display: flex; flex-direction: column; gap: 28px;
+  }
+  .form-head h3 { font-family: 'Marcellus', serif; font-size: 30px; color: var(--ink); font-weight: 400; margin-bottom: 8px; }
+  .form-head p { font-size: 14px; color: var(--mid-gray); }
+  #quizSteps { display: flex; flex-direction: column; gap: 40px; }
+  .step { display: flex; flex-direction: column; gap: 12px; }
+  .step-head { display: flex; align-items: center; gap: 10px; }
+  .step-num {
+    width: 26px; height: 26px; border-radius: 999px; background: var(--teal-dark); color: var(--white);
+    display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex: none;
+  }
+  .step-head h4 { font-size: 15px; font-weight: 700; color: var(--ink); }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    padding: 10px 18px; border-radius: 999px; border: 1px solid var(--line); background: var(--white);
+    font-size: 14px; color: var(--ink-soft); cursor: pointer;
+    transition: transform .3s var(--ease), background-color .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease);
+    user-select: none;
+  }
+  .chip:hover { border-color: var(--teal); color: var(--teal-dark); transform: translateY(-1px); }
+  .chip.selected { background: var(--teal-dark); border-color: var(--teal-dark); color: var(--white); }
+  .chip.selected:hover { color: var(--white); }
+  .submit-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .submit-btn { padding: 15px 32px; }
+  .reassure { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--mid-gray); }
+  .reassure svg { width: 15px; height: 15px; color: var(--teal-dark); }
+  .quiz-result {
+    display: none; flex-direction: column; gap: 14px; align-items: flex-start;
+    background: linear-gradient(180deg, rgba(16,174,156,0.08), rgba(16,174,156,0.02));
+    border: 1px solid rgba(16,174,156,0.3); border-radius: 16px; padding: 28px;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity .7s var(--ease), transform .7s var(--ease);
+  }
+  .quiz-result.show { display: flex; }
+  .quiz-result.in { opacity: 1; transform: translateY(0); }
+  .qr-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--teal-dark); }
+  .qr-badge svg { width: 16px; height: 16px; }
+  .quiz-result h4 { font-family: 'Marcellus', serif; font-size: 26px; font-weight: 400; color: var(--ink); }
+  .quiz-result p { font-size: 15px; line-height: 1.6; color: var(--ink-soft); }
+  .quiz-result .btn { margin-top: 4px; padding: 15px 32px; }
+
+  /* ---------- How It Works ---------- */
+  .hiw { background: var(--white); padding: 72px 48px; display: flex; align-items: center; gap: 56px; }
+  .hiw-img { width: 520px; height: 440px; flex: none; border-radius: 4px; overflow: hidden; }
+  .img-zoom { overflow: hidden; }
+  .img-zoom .zoom { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 1.2s var(--ease); }
+  .img-zoom:hover .zoom { transform: scale(1.08); }
+  .hiw-content { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+  .hiw-content .body { font-size: 15px; line-height: 1.6; color: var(--ink-soft); }
+  .feature-steps { display: flex; gap: 16px; }
+  .feature {
+    flex: 1; background: var(--bg); padding: 18px; display: flex; flex-direction: column; gap: 10px;
+    border: 1px solid transparent;
+    transition: border-color .4s var(--ease), box-shadow .5s var(--ease), transform .5s var(--ease);
+  }
+  .feature:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: rgba(16,174,156,0.25); }
+  .feat-icon {
+    width: 38px; height: 38px; border-radius: 10px; background: var(--teal-dark); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .4s var(--ease), background-color .4s var(--ease);
+  }
+  .feature:hover .feat-icon { transform: rotate(-6deg) scale(1.05); }
+  .feat-icon svg { width: 19px; height: 19px; }
+  .feature h5 { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .feature p { font-size: 13px; line-height: 1.45; color: var(--mid-gray); }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 20px; }
+  .meta { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--ink-soft); }
+  .meta svg { width: 15px; height: 15px; color: var(--teal); }
+  .hiw-cta { align-self: flex-start; padding: 14px 28px; }
+
+  /* ---------- Results ---------- */
+  .results { background: var(--bg); padding: 80px; display: flex; flex-direction: column; gap: 20px; }
+  .results-head { display: flex; flex-direction: column; gap: 12px; }
+  .results-row1 { display: flex; gap: 20px; height: 420px; }
+  .stat-grid { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 20px; }
+  .stat-card { border-radius: 24px; padding: 24px; display: flex; flex-direction: column; justify-content: center; gap: 4px; transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
+  .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .stat-card.big { background: var(--teal-dark); color: var(--white); }
+  .stat-card.big .num { font-family: 'Marcellus', serif; font-size: 54px; line-height: 0.95; }
+  .stat-card.big .lbl { font-size: 13px; line-height: 1.4; color: rgba(255,255,255,0.9); }
+  .stat-card.big.lighter { background: var(--teal); }
+  .stat-card .num-unit { font-size: 22px; }
+  .stat-card .v { font-family: 'Marcellus', serif; font-size: 24px; line-height: 1.05; }
+  .stat-card .d { font-size: 13px; }
+  .stat-card.aqua { background: var(--teal-2); color: var(--white); }
+  .stat-card.cloud { background: #E8F4F1; color: var(--ink); }
+  .stat-card.teal2 { background: var(--teal-2); color: var(--white); }
+  .stat-card.photo { padding: 0; overflow: hidden; }
+  .detail-tile { flex: 1.25; border-radius: 28px; overflow: hidden; }
+  .ba-head { padding-top: 16px; }
+  .ba-head h4 { font-family: 'Marcellus', serif; font-size: 24px; color: var(--ink); font-weight: 400; }
+  .ba-row { display: flex; gap: 20px; height: 320px; }
+  .pair { flex: 1; background: var(--white); border-radius: 28px; padding: 8px; display: flex; gap: 6px; }
+  .ba-img { flex: 1; border-radius: 20px; overflow: hidden; position: relative; display: flex; align-items: flex-end; padding: 10px; background-size: cover; background-position: center; cursor: zoom-in; transition: transform .5s var(--ease); }
+  .ba-img:hover { transform: scale(1.015); }
+  .ba-tag { font-size: 11px; font-weight: 600; letter-spacing: .5px; color: var(--ink); background: rgba(255,255,255,0.92); padding: 4px 10px; border-radius: 999px; }
+  .results-cta-row { display: flex; justify-content: center; padding-top: 20px; }
+  .results-cta { padding: 16px 36px; }
+
+  /* ---------- Lightbox ---------- */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 1000; display: none;
+    align-items: center; justify-content: center; padding: 40px;
+    background: rgba(7,7,7,0.92); cursor: zoom-out;
+    opacity: 0; transition: opacity .35s var(--ease);
+  }
+  .lightbox.open { display: flex; opacity: 1; }
+  .lightbox img { max-width: 92vw; max-height: 92vh; border-radius: 8px; box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6); }
+  .lightbox-close { position: absolute; top: 24px; right: 28px; color: #fff; font-size: 34px; line-height: 1; cursor: pointer; opacity: .85; transition: opacity .3s var(--ease); }
+  .lightbox-close:hover { opacity: 1; }
+
+  /* ---------- Reviews ---------- */
+  .reviews { background: var(--white); padding: 96px 80px; display: flex; flex-direction: column; align-items: center; gap: 48px; }
+  .reviews-head { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; max-width: 760px; }
+  .reviews-head .stars svg { width: 18px; height: 18px; }
+  .reviews-head .eyebrow-line { font-size: 15px; color: var(--mid-gray); }
+  .reviews-cols { display: flex; width: 100%; }
+  .review { flex: 1; padding: 24px 40px 0; display: flex; flex-direction: column; gap: 18px; border-radius: 14px;
+    transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
+  .review:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .review .stars svg { width: 15px; height: 15px; }
+  .review blockquote { font-family: 'Marcellus', serif; font-size: 20px; line-height: 1.45; color: var(--ink-soft); }
+  .review .who { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .review .meta-sm { font-size: 12px; font-weight: 400; color: var(--mid-gray); display: block; margin-top: 2px; }
+  .review-sep { width: 1px; background: var(--line); align-self: stretch; margin: 8px 0; }
+  .reviews-cta { padding: 16px 36px; }
+
+  /* ---------- Contact ---------- */
+  .contact { background: var(--bg); padding: 72px 48px; display: flex; gap: 48px; align-items: stretch; }
+  .contact-form { flex: 1; background: #E8F4F1; border: 1px solid rgba(16,174,156,0.25); padding: 36px; display: flex; flex-direction: column; gap: 18px; }
+  .contact-form h3 { font-family: 'Marcellus', serif; font-size: 28px; font-weight: 400; color: var(--ink); }
+  .contact-form > p { font-size: 14px; color: var(--mid-gray); margin-top: -10px; }
+  .form-row { display: flex; gap: 12px; }
+  .field { flex: 1; }
+  .field input, .field textarea {
+    width: 100%; background: var(--bg); border: 1px solid var(--line);
+    padding: 13px 16px; font-family: inherit; font-size: 14px; color: var(--ink);
+    transition: border-color .3s var(--ease), background-color .3s var(--ease);
+  }
+  .field input::placeholder, .field textarea::placeholder { color: var(--mid-gray); }
+  .field input:hover, .field textarea:hover { border-color: var(--teal); }
+  .field input:focus, .field textarea:focus { outline: none; border-color: var(--teal-dark); background: var(--white); }
+  .contact-form textarea { min-height: 120px; resize: none; }
+  .contact-submit { align-self: flex-start; padding: 15px 32px; }
+  .doctor { flex: 1; display: flex; flex-direction: column; gap: 20px; }
+  .doctor-top { display: flex; align-items: center; gap: 16px; }
+  .doctor-photo { width: 96px; height: 96px; flex: none; border-radius: 50%; overflow: hidden; background: url('./images/krista.webp') center/cover no-repeat; }
+  .doctor-name { font-family: 'Marcellus', serif; font-size: 22px; color: var(--ink); }
+  .doctor-cred { font-size: 13px; color: var(--teal-dark); margin-top: 4px; }
+  .doctor-bio { font-size: 14px; line-height: 1.6; color: var(--ink-soft); }
+  .clinic-row { display: flex; gap: 20px; align-items: stretch; flex: 1; }
+  .clinic-details { width: 200px; flex: none; display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+  .clinic-photo { flex: 1; min-height: 280px; border-radius: 4px; overflow: hidden; background: url('./images/front.webp') center/cover no-repeat; }
+  .ci { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
+  .ci svg { margin-top: 2px; }
+  .ci a { color: inherit; transition: color .3s var(--ease); }
+  .ci a:hover { color: var(--teal-dark); }
+  .map-section { width: 100%; line-height: 0; }
+  .map-embed { width: 100%; height: 440px; border: 0; display: block; }
+  .ci svg { width: 17px; height: 17px; color: var(--teal-dark); flex: none; }
+
+  /* ---------- FAQ ---------- */
+  .faq { background: var(--white); padding: 80px 48px; display: flex; flex-direction: column; align-items: center; gap: 36px; }
+  .faq-head { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+  .faq-cols { display: flex; gap: 56px; width: 1100px; max-width: 100%; }
+  .faq-col { flex: 1; display: flex; flex-direction: column; }
+  details.faq-item { padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .faq-col details.faq-item:last-child { border-bottom: none; }
+  details.faq-item summary { list-style: none; cursor: pointer; display: flex; align-items: flex-start; gap: 12px; }
+  details.faq-item summary::-webkit-details-marker { display: none; }
+  .faq-plus { color: var(--teal-dark); flex: none; transition: transform .4s var(--ease); margin-top: 2px; }
+  .faq-plus svg { width: 18px; height: 18px; }
+  details[open] .faq-plus { transform: rotate(45deg); }
+  .faq-q { font-family: 'Marcellus', serif; font-size: 19px; line-height: 1.25; color: var(--ink); transition: color .3s var(--ease); }
+  details.faq-item summary:hover .faq-q { color: var(--teal-dark); }
+  .faq-a { font-size: 14px; line-height: 1.55; color: var(--ink-soft); padding: 8px 0 0 30px; }
+
+  /* ---------- CTA Banner ---------- */
+  .cta-banner { background: var(--teal); display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 48px 96px; }
+  .cta-left { max-width: 760px; }
+  .cta-left h3 { font-family: 'Marcellus', serif; font-size: 36px; line-height: 1.1; color: var(--white); font-weight: 400; margin-bottom: 8px; }
+  .cta-left p { font-size: 15px; color: rgba(255,255,255,0.87); }
+  .cta-right { display: flex; align-items: center; gap: 14px; }
+  .cta-book { padding: 16px 32px; }
+  .cta-phone { padding: 15px 28px; letter-spacing: .4px; }
+
+  /* ---------- Footer (from exomind) ---------- */
+  footer { background: var(--white); padding: 60px 80px 28px; border-top: 1px solid var(--line); }
+  .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; max-width: 1280px; margin: 0 auto; align-items: center; }
+  .ft-brand { display: inline-flex; align-items: center; }
+  .ft-logo {
+    width: auto; height: 48px; object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(58%) sepia(58%) saturate(486%) hue-rotate(127deg) brightness(91%) contrast(88%);
+    transition: filter 0.5s var(--ease), transform 0.5s var(--ease);
+  }
+  .ft-brand:hover .ft-logo {
+    filter: brightness(0) saturate(100%) invert(58%) sepia(58%) saturate(486%) hue-rotate(127deg) brightness(105%) contrast(92%) drop-shadow(0 0 12px rgba(16,174,156,0.7)) drop-shadow(0 0 24px rgba(16,174,156,0.45));
+    transform: translateY(-2px);
+  }
+  .ft-col h5 { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--teal-dark); text-transform: uppercase; margin-bottom: 14px; }
+  .ft-col p, .ft-col a { display: block; font-size: 14px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 4px; transition: color 0.3s var(--ease); }
+  .ft-col a:hover { color: var(--teal-dark); }
+  .ft-col p.muted { color: var(--ink-soft); opacity: 0.55; }
+  .ft-divider { height: 1px; background: var(--line); margin: 40px auto 0; max-width: 1280px; }
+  .ft-legal { max-width: 1280px; margin: 28px auto 0; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .ft-legal p { font-size: 12px; color: var(--ink-soft); opacity: 0.6; }
+
+  /* ---------- Reveal system ---------- */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal-stagger > * { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal-stagger.in > *:nth-child(1) { transition-delay: .05s; }
+  .reveal-stagger.in > *:nth-child(2) { transition-delay: .15s; }
+  .reveal-stagger.in > *:nth-child(3) { transition-delay: .25s; }
+  .reveal-stagger.in > *:nth-child(4) { transition-delay: .35s; }
+  .reveal-stagger.in > * { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .reveal, .reveal-stagger > *, .hero-card { opacity: 1; transform: none; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1080px) {
+    .topbar, .topbar.is-scrolled { padding-left: 24px; padding-right: 24px; }
+    .hero { padding: 120px 24px 64px; }
+    .statbar { padding: 32px 24px; }
+    .leadform, .hiw, .reviews, .contact, .faq { padding-left: 24px; padding-right: 24px; }
+    .results { padding: 56px 24px; }
+    .cta-banner { padding: 40px 24px; }
+    footer { padding: 48px 24px 24px; }
+    .hiw { gap: 32px; }
+    .hiw-img { width: 420px; height: 380px; }
+    .results-row1 { height: 380px; }
+  }
+  @media (max-width: 900px) {
+    .nav, .topbar-cta { display: none; }
+    .hiw { flex-direction: column; align-items: stretch; }
+    .hiw-img { width: 100%; height: 320px; }
+    .feature-steps { flex-direction: column; }
+    .results-row1 { flex-direction: column; height: auto; }
+    .stat-grid { height: 320px; }
+    .detail-tile { height: 320px; }
+    .reviews-cols { flex-direction: column; gap: 8px; }
+    .review { padding: 28px 0; border-bottom: 1px solid var(--line); }
+    .reviews-cols .review:last-child { border-bottom: none; }
+    .review-sep { display: none; }
+    .contact { flex-direction: column; }
+    .doctor { width: 100%; }
+    .faq-cols { flex-direction: column; gap: 0; width: 100%; }
+    .cta-banner { flex-direction: column; align-items: flex-start; }
+    .footer-top { grid-template-columns: 1fr; gap: 28px; text-align: left; }
+  }
+  @media (max-width: 600px) {
+    .statbar { flex-wrap: wrap; gap: 24px 0; padding: 28px 20px; }
+    .stat { flex-basis: 50%; }
+    .stat-div { display: none; }
+    .stat-val { font-size: 38px; }
+    .hero-card { padding: 36px 24px; gap: 22px; }
+    .form-card { padding: 24px; }
+    .form-row { flex-direction: column; }
+    .clinic-row { flex-direction: column; }
+    .clinic-details { width: 100%; }
+    .clinic-photo { min-height: 220px; }
+    .stat-grid { grid-template-columns: 1fr; grid-template-rows: none; height: auto; }
+    .stat-card { min-height: 120px; }
+    .ba-row { flex-direction: column; height: auto; }
+    .pair { height: 260px; }
+    .sec-title, .cta-left h3 { font-size: 30px; }
+    .leadform, .reviews, .contact, .faq, .hiw { padding-left: 20px; padding-right: 20px; }
+    .results { padding: 48px 20px; }
+    .cta-banner { padding: 36px 24px; }
+    .submit-row { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== Top Bar (exomind header) ===== -->
+  <header class="topbar on-hero" id="topbar">
+    <div class="topbar-inner">
+      <a href="#top" class="brand">
+        <img src="./images/logo.png" alt="Seaside Wellness Primary Care" class="brand-logo" />
+      </a>
+      <nav class="nav">
+        <a href="#how">How It Works</a>
+        <a href="#results">Results</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="topbar-cta">
+        <a href="#contact" class="btn btn-primary">Book a Consultation</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="top">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">EMTONE®  ·  CELLULITE TREATMENT</span>
+      <h1 class="hero-title">Toned, not textured.<br>Smooth skin starts here.</h1>
+      <p class="hero-sub">A non-invasive treatment at Seaside Wellness that targets all major causes of cellulite at once, with no needles, no downtime, just smoother skin.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary hero-cta" href="#plan">Book your consultation</a>
+        <span class="trust-line">
+          <span class="stars" aria-label="5 out of 5 stars">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg>
+          </span>
+          <span class="trust-text">5.0 · 10 Google reviews</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Stat Bar ===== -->
+  <section class="statbar">
+    <div class="stat"><span class="stat-val"><span class="count-up" data-target="93" data-suffix="%">0%</span></span><span class="stat-lbl">reported visible reduction</span></div>
+    <span class="stat-div"></span>
+    <div class="stat"><span class="stat-val"><span class="count-up" data-target="4">0</span></span><span class="stat-lbl">treatments to see results</span></div>
+    <span class="stat-div"></span>
+    <div class="stat"><span class="stat-val"><span class="count-up" data-target="20" data-prefix="~" data-suffix=" min">~0 min</span></span><span class="stat-lbl">per relaxing session</span></div>
+    <span class="stat-div"></span>
+    <div class="stat"><span class="stat-val">0</span><span class="stat-lbl">downtime, return to your day</span></div>
+  </section>
+
+  <!-- ===== Lead Form / Quiz ===== -->
+  <section class="leadform" id="plan">
+    <div class="form-card reveal" id="planForm">
+      <div class="form-head">
+        <h3>Find your treatment plan in 30 seconds</h3>
+        <p>Three quick questions. No obligation · Free consultation.</p>
+      </div>
+      <div id="quizSteps">
+        <div class="step">
+          <div class="step-head"><span class="step-num">1</span><h4>Which area would you like to treat?</h4></div>
+          <div class="chip-row" data-group="area">
+            <span class="chip">Buttocks &amp; thighs</span>
+            <span class="chip">Abdomen</span>
+            <span class="chip">Arms</span>
+            <span class="chip">Multiple areas</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-head"><span class="step-num">2</span><h4>What's your main concern?</h4></div>
+          <div class="chip-row" data-group="concern">
+            <span class="chip">Cellulite</span>
+            <span class="chip">Skin laxity</span>
+            <span class="chip">Firmness &amp; tone</span>
+            <span class="chip">Not sure yet</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-head"><span class="step-num">3</span><h4>When would you like to begin?</h4></div>
+          <div class="chip-row" data-group="timing">
+            <span class="chip">As soon as possible</span>
+            <span class="chip">Within a month</span>
+            <span class="chip">Just researching</span>
+          </div>
+        </div>
+      </div>
+      <div class="submit-row" id="quizSubmitRow">
+        <button type="button" class="btn btn-primary submit-btn" id="getPlanBtn" disabled>Get my treatment plan
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <span class="reassure">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          No obligation · Free consultation
+        </span>
+      </div>
+      <div class="quiz-result" id="quizResult">
+        <span class="qr-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Great news
+        </span>
+        <h4>EMTONE® is a great fit for you.</h4>
+        <p id="quizResultText">Based on your answers, EMTONE is an excellent, non-invasive option, typically four short, relaxing sessions with no downtime. The next step is a quick, free consultation with Krista to map out your personalized plan.</p>
+        <a class="btn btn-primary" href="#contact" id="quizResultCta">Book your free consultation
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== How It Works ===== -->
+  <section class="hiw" id="how">
+    <div class="hiw-img img-zoom reveal"><div class="zoom" style="background-image:url('./images/EMTONE_PIC_Handpiece-detail_ENUS100.jpg')"></div></div>
+    <div class="hiw-content reveal">
+      <span class="eyebrow">What is EMTONE®</span>
+      <h2 class="sec-title">Two energies, working together.</h2>
+      <p class="body">EMTONE® is the first and only device to simultaneously deliver thermal (monopolar radiofrequency) and mechanical/acoustic (targeted pressure) energy, treating all major contributing factors of cellulite at once. The result is synergistic, and it feels like a hot-stone massage with gentle vibration.</p>
+      <div class="feature-steps reveal-stagger">
+        <div class="feature">
+          <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 2.4 1.2 4 2.5 5.2C8.6 15.2 9 16 9 17v1a3 3 0 0 0 6 0v-1c0-1 .4-1.8 1.5-2.8C17.8 13 19 11.4 19 9a7 7 0 0 0-7-7z"/></svg></span>
+          <h5>Thermal RF</h5>
+          <p>Monopolar radiofrequency heats deep tissue.</p>
+        </div>
+        <div class="feature">
+          <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 12 5 12 7 5 11 19 13 9 15 14 17 12 22 12"/></svg></span>
+          <h5>Acoustic pressure</h5>
+          <p>Targeted mechanical waves boost circulation.</p>
+        </div>
+        <div class="feature">
+          <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg></span>
+          <h5>Synergy</h5>
+          <p>Both at once for smoother, firmer skin.</p>
+        </div>
+      </div>
+      <div class="meta-row">
+        <span class="meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 4 treatments · ~20 min</span>
+        <span class="meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> No downtime</span>
+        <span class="meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 1-2x per week</span>
+      </div>
+      <a class="btn btn-primary hiw-cta" href="#plan">Book your free consultation
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== Results ===== -->
+  <section class="results" id="results">
+    <div class="results-head reveal">
+      <span class="eyebrow">The proof</span>
+      <h2 class="sec-title">Real results, backed by real numbers</h2>
+    </div>
+    <div class="results-row1 reveal">
+      <div class="stat-grid">
+        <div class="stat-card big">
+          <span class="num"><span class="count-up" data-target="93" data-suffix="%">0%</span></span>
+          <span class="lbl">reported visible cellulite reduction after four treatments.</span>
+        </div>
+        <div class="stat-card big lighter"><span class="num"><span class="count-up" data-target="4">0</span> <span class="num-unit">treatments</span></span><span class="lbl">~20 min each</span></div>
+        <div class="stat-card cloud"><span class="v">No downtime</span><span class="d">Return to your day</span></div>
+        <div class="stat-card photo img-zoom"><div class="zoom" style="background-image:url('./images/EMTONE_PIC_Arm-detail_ENUS100.jpg');height:100%"></div></div>
+      </div>
+      <div class="detail-tile img-zoom"><div class="zoom" style="background-image:url('./images/EMTONE_PIC_Detail-buttock_ENUS100.jpg');height:100%"></div></div>
+    </div>
+    <div class="ba-head"><h4>Before &amp; after: four treatments</h4></div>
+    <div class="ba-row reveal-stagger">
+      <div class="pair">
+        <div class="ba-img" data-img="./images/b1.png" style="background-image:url('./images/b1.png')"><span class="ba-tag">Before</span></div>
+        <div class="ba-img" data-img="./images/a1.png" style="background-image:url('./images/a1.png')"><span class="ba-tag">After</span></div>
+      </div>
+      <div class="pair">
+        <div class="ba-img" data-img="./images/b2.jpg" style="background-image:url('./images/b2.jpg')"><span class="ba-tag">Before</span></div>
+        <div class="ba-img" data-img="./images/a2.jpg" style="background-image:url('./images/a2.jpg')"><span class="ba-tag">After</span></div>
+      </div>
+      <div class="pair">
+        <div class="ba-img" data-img="./images/b3.png" style="background-image:url('./images/b3.png')"><span class="ba-tag">Before</span></div>
+        <div class="ba-img" data-img="./images/a3.png" style="background-image:url('./images/a3.png')"><span class="ba-tag">After</span></div>
+      </div>
+    </div>
+    <div class="results-cta-row reveal">
+      <a class="btn btn-primary results-cta" href="#plan">Start your treatment plan</a>
+    </div>
+  </section>
+
+  <!-- ===== Reviews ===== -->
+  <section class="reviews" id="reviews">
+    <div class="reviews-head reveal">
+      <span class="stars" aria-label="5 out of 5 stars">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg>
+      </span>
+      <span class="eyebrow-line">5.0 · 10 Google reviews</span>
+      <h2 class="sec-title">Loved by patients across Largo</h2>
+    </div>
+    <div class="reviews-cols reveal-stagger">
+      <div class="review">
+        <span class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg></span>
+        <blockquote>"I had my first visit at Seaside Wellness yesterday. From beginning to end, everything ran smoothly. Krista listened to me, heard me, and encouraged me. She spends lots of time with her patients. It's a beautiful office as well."</blockquote>
+        <span class="who">Corinne Ibbitson<span class="meta-sm">Local Guide · Google review</span></span>
+      </div>
+      <div class="review-sep"></div>
+      <div class="review">
+        <span class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg></span>
+        <blockquote>"Krista is very knowledgeable, compassionate, asks a lot of questions and genuinely listens to the patient's responses. I really appreciate her thoroughness and am blessed to have found her as my primary care provider."</blockquote>
+        <span class="who">Donald J. Ibbitson, PhD<span class="meta-sm">Google review</span></span>
+      </div>
+      <div class="review-sep"></div>
+      <div class="review">
+        <span class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.193-5.934 5.787 1.401 8.168L12 18.896l-7.335 3.863 1.401-8.168L.132 9.211l8.2-1.193z"/></svg></span>
+        <blockquote>"I had the best experience here. Krista is so empathetic, professional, and thorough. The clinic itself was spa-like, welcoming, and warm. Her self-pay rates are the best around. Give her a call, I promise you won't be disappointed!"</blockquote>
+        <span class="who">Mary Le<span class="meta-sm">Local Guide · Google review</span></span>
+      </div>
+    </div>
+    <a class="btn btn-primary reviews-cta" href="#plan">Book your consultation</a>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section class="contact" id="contact">
+    <form class="contact-form reveal" id="contactForm">
+      <h3>Request your consultation</h3>
+      <p>Tell us a little about you and we'll be in touch.</p>
+      <div class="form-row">
+        <div class="field"><input type="text" placeholder="First name" /></div>
+        <div class="field"><input type="text" placeholder="Last name" /></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><input type="email" placeholder="Email" /></div>
+        <div class="field"><input type="tel" placeholder="Phone number" /></div>
+      </div>
+      <div class="field"><textarea placeholder="Message"></textarea></div>
+      <button type="submit" class="btn btn-primary contact-submit">Send request
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </form>
+    <aside class="doctor reveal">
+      <div class="doctor-top">
+        <div class="doctor-photo"></div>
+        <div>
+          <div class="doctor-name">Krista Shenkman</div>
+          <div class="doctor-cred">MSN, BBA, APRN, AGPCNP-BC</div>
+        </div>
+      </div>
+      <p class="doctor-bio">An experienced APRN who listens and connects the dots. Care is delivered in a calm, spa-like environment designed to put you at ease.</p>
+      <div class="clinic-row">
+        <div class="clinic-details">
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> <span>7531 Ulmerton Rd<br>Largo, FL 33771</span></span>
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <a href="tel:+17272705047">727-270-5047</a></span>
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg> <span>Mon-Fri 9-5<br>Sat 10-2<br>Sun closed</span></span>
+        </div>
+        <div class="clinic-photo"></div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ===== Map ===== -->
+  <section class="map-section" aria-label="Clinic location">
+    <iframe class="map-embed" src="https://www.google.com/maps?q=Seaside%20Wellness%20Primary%20Care%2C%207531%20Ulmerton%20Rd%2C%20Largo%2C%20FL%2033771&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Seaside Wellness Primary Care location"></iframe>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq" id="faq">
+    <div class="faq-head reveal">
+      <span class="eyebrow">Frequently asked</span>
+      <h2 class="sec-title">Questions, answered.</h2>
+    </div>
+    <div class="faq-cols">
+      <div class="faq-col reveal">
+        <details class="faq-item">
+          <summary><span class="faq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span><span class="faq-q">What is cellulite?</span></summary>
+          <p class="faq-a">Subcutaneous fat pushing against fibrous connective tissue, creating the puckered, dimpled look on the skin's surface.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span><span class="faq-q">What does treatment feel like?</span></summary>
+          <p class="faq-a">Like a hot-stone massage with gentle vibration, comfortably lying down. Most patients find it relaxing.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span><span class="faq-q">How many treatments will I need?</span></summary>
+          <p class="faq-a">Most patients do 4 treatments, 1-2 times per week, with each session lasting about 20 minutes.</p>
+        </details>
+      </div>
+      <div class="faq-col reveal">
+        <details class="faq-item">
+          <summary><span class="faq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span><span class="faq-q">How soon will I see results?</span></summary>
+          <p class="faq-a">Some patients notice a difference after one session, with results continuing to improve over the following months.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span><span class="faq-q">Is there any downtime?</span></summary>
+          <p class="faq-a">None. EMTONE® is non-invasive, so you can return to your normal day right after your session.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span><span class="faq-q">Who performs the treatment?</span></summary>
+          <p class="faq-a">Krista Shenkman, APRN, an experienced provider who personally guides your care from start to finish.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA Banner ===== -->
+  <section class="cta-banner">
+    <div class="cta-left">
+      <h3>Book your free consultation</h3>
+      <p>See visible results in just 4 short visits, with no downtime and no obligation.</p>
+    </div>
+    <div class="cta-right">
+      <a class="btn btn-light cta-book" href="#contact">Book now
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a class="btn btn-outline-light cta-phone" href="tel:+17272705047">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        727-270-5047
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== Footer (exomind) ===== -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <a href="#top" class="brand ft-brand">
+          <img src="./images/logo.png" alt="Seaside Wellness Primary Care" class="ft-logo" />
+        </a>
+      </div>
+      <div class="ft-col">
+        <h5>Visit</h5>
+        <p>7531 Ulmerton Rd</p>
+        <p>Largo, FL 33771</p>
+        <a href="tel:7272705047">727-270-5047</a>
+      </div>
+      <div class="ft-col">
+        <h5>Hours</h5>
+        <p>Mon to Fri · 9a to 5p</p>
+        <p>Saturday · 10a to 2p (by appt.)</p>
+        <p class="muted">Sunday closed</p>
+      </div>
+    </div>
+    <div class="ft-divider"></div>
+    <div class="ft-legal">
+      <p>© 2026 Seaside Wellness Primary Care · HIPAA-compliant</p>
+      <p>EMTONE® is a registered trademark of BTL. Individual results may vary.</p>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ===== Lightbox ===== -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="lightboxClose">&times;</span>
+  <img src="" alt="Before and after, full size" id="lightboxImg" />
+</div>
+
+<script>
+  const topbar = document.getElementById('topbar');
+  const hero = document.querySelector('.hero');
+  const onScroll = () => {
+    const y = window.scrollY;
+    topbar.classList.toggle('is-scrolled', y > 40);
+    const heroBottom = hero.offsetTop + hero.offsetHeight - 80;
+    topbar.classList.toggle('on-hero', y < heroBottom);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  requestAnimationFrame(() => hero.classList.add('is-loaded'));
+
+  const reveals = document.querySelectorAll('.reveal, .reveal-stagger');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach((el) => io.observe(el));
+  } else {
+    reveals.forEach((el) => el.classList.add('in'));
+  }
+
+  document.querySelectorAll('.btn').forEach((el) => {
+    el.addEventListener('mousemove', (e) => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  const countUps = document.querySelectorAll('.count-up');
+  if (countUps.length && 'IntersectionObserver' in window) {
+    const animateCount = (el) => {
+      const target = parseFloat(el.dataset.target) || 0;
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const duration = 1600, start = performance.now();
+      const ease = (t) => 1 - Math.pow(1 - t, 3);
+      const tick = (now) => {
+        const t = Math.min((now - start) / duration, 1);
+        el.textContent = prefix + Math.round(target * ease(t)) + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const cio = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) { animateCount(entry.target); cio.unobserve(entry.target); }
+      });
+    }, { threshold: 0.4 });
+    countUps.forEach((el) => cio.observe(el));
+  }
+
+  function refreshPlanBtn() {
+    const btn = document.getElementById('getPlanBtn');
+    if (!btn) return;
+    const groups = ['area', 'concern', 'timing'];
+    const allChosen = groups.every((g) => document.querySelector('.chip-row[data-group="' + g + '"] .chip.selected'));
+    btn.disabled = !allChosen;
+  }
+  document.querySelectorAll('.chip-row').forEach((row) => {
+    row.addEventListener('click', (e) => {
+      const chip = e.target.closest('.chip');
+      if (!chip) return;
+      row.querySelectorAll('.chip').forEach((c) => c.classList.remove('selected'));
+      chip.classList.add('selected');
+      refreshPlanBtn();
+    });
+  });
+  refreshPlanBtn();
+
+  const getPlanBtn = document.getElementById('getPlanBtn');
+  if (getPlanBtn) {
+    getPlanBtn.addEventListener('click', () => {
+      const sel = (g) => {
+        const c = document.querySelector('.chip-row[data-group="' + g + '"] .chip.selected');
+        return c ? c.textContent.trim() : '';
+      };
+      const area = sel('area').toLowerCase();
+      const concern = sel('concern').toLowerCase();
+      const intro = (area && concern)
+        ? 'Based on your answers (' + area + ', focused on ' + concern + '), '
+        : 'Based on your answers, ';
+      document.getElementById('quizResultText').textContent =
+        intro + 'EMTONE is an excellent, non-invasive option. It typically takes four short, relaxing sessions with no downtime. The next step is a quick, free consultation with Krista to map out your personalized plan.';
+      const result = document.getElementById('quizResult');
+      document.getElementById('quizSubmitRow').style.display = 'none';
+      result.classList.add('show');
+      requestAnimationFrame(() => requestAnimationFrame(() => result.classList.add('in')));
+    });
+  }
+
+  document.querySelectorAll('form').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn && !btn.dataset.done) {
+        btn.dataset.done = '1';
+        btn.textContent = 'Thank you — we will be in touch';
+      }
+    });
+  });
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const closeLightbox = () => { lightbox.classList.remove('open'); };
+  document.querySelectorAll('.ba-img').forEach((el) => {
+    el.addEventListener('click', () => {
+      lightboxImg.src = el.dataset.img;
+      lightbox.classList.add('open');
+    });
+  });
+  lightbox.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      }
+    });
+  });
+</script>
+</body>
+</html>
